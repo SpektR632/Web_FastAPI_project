@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %} Bookland {% endblock title %}
+
+{% block content %}
+    <div class="container-fluid my-2">
+        <div class="row">
+            <div class="col text-center text-primary 1h-2">
+                <p>Добро пожаловать на сайт <em>Bookland</em>.
+                   Это простой веб-сайт, где вы можете приобрести любую книгу</p>
+            </div>
+        </div>
+        <div class="row text-center text-dark 1h-2">
+            <h4>На сайте представлены {{ books_num }} книг</h4>
+        </div>
+        <div class="row text-center text-dark 1h-2">
+            <h3>Книги</h3>
+        </div>
+            <div class="row my-2">
+                {% for obj in books %}
+                    <div class="card" style="width: 9rem;">
+                        <img src="static/images/{{ obj.photo }}" class="card-img-top">
+                        <p class="card-text small">
+                            {{ obj.title }},
+                        </p>
+                        <p class="card-text small">Цена: {{obj.price }}</p>
+                    </div>
+                {% endfor %}
+                <div>
+                    {% if current_page > 1 %}
+                        <a href="/?page={{ current_page - 1 }}&page_size={{ page_size }}">Предыдущая</a>
+                    {% endif %}
+                    <span>Страница {{ current_page }} из {{ total_pages }}</span>
+                    {% if current_page < total_pages %}
+                        <a href="/?page={{ current_page + 1 }}&page_size={{ page_size }}">Следующая</a>
+                    {% endif %}
+                </div>
+            </div>
+
+    </div>
+{% endblock content %}

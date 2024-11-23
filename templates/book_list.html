@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row text-center text-dark 1h-2">
+        <h4>Список книг</h4>
+    </div>
+    {% if books %}
+    <table class="table table-striped table-bordered text-start">
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Жанр</th>
+            <th>Обложка</th>
+            <th>Показать обложку</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td><a href="book_list/{{ book.id }}/">{{ book.title }}</a></td>
+                    <td class="text-center">{{ book.author }}</td>
+                    <td class="text-center">{{ book.genre }}</td>
+                    <td class="text-center"><img src="static/images/{{ book.photo }}" alt="connect"
+                                style="max-height:100px"></td>
+                    <td class="text-center"><a href="static/images/{{ book.photo }}"
+                            class="btn btn-primary"
+                            target="blank">Показать</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        {% if current_page > 1 %}
+            <a class="btn" href="?page={{ current_page - 1 }}&page_size={{ page_size }}">Предыдущая</a>
+        {% endif %}
+        <span class="btn">Страница {{ current_page }} из {{ total_pages }}</span>
+        {% if current_page < total_pages %}
+            <a class="btn" href="?page={{ current_page + 1 }}&page_size={{ page_size }}">Следующая</a>
+        {% endif %}
+    </div>
+    {% else %}
+        <p>В базе нет книг</p>
+    {% endif %}
+{% endblock content %}
