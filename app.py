@@ -9,7 +9,7 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-attr = ['id', 'title', 'genre', 'author', 'publisher', 'year', 'description', 'isbn', 'price', 'photo']
+attr = ['id', 'title', 'genre', 'publisher', 'year', 'author', 'description', 'isbn', 'price', 'photo']
 
 
 def sql_and_pagination(page, page_size):
