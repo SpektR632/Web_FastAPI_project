@@ -19,9 +19,9 @@
                 {% for obj in books %}
                     <div class="card" style="width: 9rem;">
                         <img src="static/images/{{ obj.photo }}" class="card-img-top">
-                        <p class="card-text small">
+                        <a class="card-text small" href="book_list/{{ obj.id }}/">
                             {{ obj.title }},
-                        </p>
+                        </a>
                         <p class="card-text small">Цена: {{obj.price }}</p>
                     </div>
                 {% endfor %}
